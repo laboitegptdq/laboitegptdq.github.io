@@ -1,0 +1,42 @@
+body {
+    font-family: "comic sans ms", "Dosis", sans-serif;
+}
+
+div.main-container {
+    width: 70%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+h1.pageTitle{
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+    font-size: 6em;
+    margin-bottom: 20px;
+    padding: 5px 10px 5px 10px;
+    border: 10px solid;
+}
+
+.newColors {
+    display: inline-block;
+    margin-bottom: 40px;
+    padding: 5px 10px 5px 10px;
+    border: 5px solid black;
+    background-color: whitesmoke;
+    font-family: "Cinzel", "papyrus", serif;
+    font-weight: bold;
+    font-size: 1em;
+}
+
+.soundButton {
+    margin: 5px 10px 5px 10px;
+    padding: 5px 10px 5px 10px;
+    border: 10px solid;
+    font-size: 3em;
+    display: inline-block;
+}
+
+.soundButton:hover{
+    font-size: 3.5em;
+}
