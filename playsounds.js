@@ -1,14 +1,23 @@
 var playingSoundsMap = new Map(),
     borderStyle = ["dotted", "dashed", "solid", "double", "groove", "ridge", "inset", "outset"];
 
-/* thanks Anatoliy (https://stackoverflow.com/questions/1484506/random-color-generator-in-javascript) */
-function getRandomColor() {
-    var letters = '0123456789ABCDEF';
-    var color = '#';
-    for (var i = 0; i < 6; i++ ) {
-        color += letters[Math.floor(Math.random() * 16)];
+function getRandomColor(colorType) {
+    var randomness = 255;
+    if (colorType == "dark"){
+        randomness = 126
     }
-    return color;
+    var redValue = Math.floor(Math.random() * randomness + 1) - 1,
+        greenValue = Math.floor(Math.random() * randomness + 1) - 1,
+        blueValue = Math.floor(Math.random() * randomness + 1) - 1;
+    if (colorType == "light"){
+        var minLightValue = 240;
+        while (redValue < minLightValue && greenValue < minLightValue && blueValue < minLightValue) {
+            if(Math.random() < 0.2) redValue += 255 - minLightValue;
+            if(Math.random() < 0.2) greenValue += 255 - minLightValue;
+            if(Math.random() < 0.2) blueValue += 255 - minLightValue;
+        }
+    }
+    return "rgb(" + redValue + ", " + blueValue + ", " + greenValue + ")";
 }
 
 function getRandomElement(array){
@@ -17,8 +26,13 @@ function getRandomElement(array){
 
 function randomizeColors(){
     $(".randomColor").each(function(){
-        $(this).css("background-color", getRandomColor());
-        $(this).css("color", getRandomColor());
+        if (Math.random() < 0.5) {
+            $(this).css("background-color", getRandomColor("dark"));
+            $(this).css("color", getRandomColor("light"));
+        } else {
+            $(this).css("background-color", getRandomColor("light"));
+            $(this).css("color", getRandomColor("dark"));
+        }
         $(this).css("border-color", getRandomColor());
         $(this).css("border-style", getRandomElement(borderStyle)+" "+getRandomElement(borderStyle)+" "+getRandomElement(borderStyle)+" "+getRandomElement(borderStyle));
     });
