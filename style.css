@@ -13,7 +13,7 @@ h1.pageTitle{
     margin: 0 auto;
     text-align: center;
     font-size: 6em;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 5px 10px 5px 10px;
     border: 10px solid;
 }
@@ -28,7 +28,10 @@ h1.pageTitle{
     font-weight: bold;
     font-size: 1em;
 }
-
+.gifvolume{
+    width: 13em;
+    margin-bottom: 10px;
+}
 .soundButton {
     margin: 5px 10px 5px 10px;
     padding: 5px 10px 5px 10px;
