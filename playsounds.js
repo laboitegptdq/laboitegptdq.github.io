@@ -47,17 +47,29 @@ $.getJSON('/sounds/list.json', function(data) {
     var soundList = String(data["sound"]).split(",");
     soundList.forEach(function(sound) {
         $("div#soundcontainer").append("<button class='soundButton randomColor' id='" + sound + "'>" + sound.split(".")[0] + "</button>");
+        /* This may me too heavy for small internet connexions */
+        /*
+        var audio = new Audio("/sounds/" + sound);
+        playingSoundsMap.set(sound, audio);
+        */
     });
 
     $("button.soundButton").bind( "click", function(event) {
-        songName = event.target.id;
-        if (playingSoundsMap.has(songName)){
-            playingSoundsMap.get(songName).pause();
-            playingSoundsMap.delete(songName);
+        var audio,
+            soundName = event.target.id;
+        
+        /* obligatory "if", if we do not load all sound when creating buttons */
+        if (!playingSoundsMap.has(soundName)){
+            audio = new Audio("/sounds/" + soundName);
+            playingSoundsMap.set(soundName, audio);
+        }
+      
+        if (playingSoundsMap.has(soundName) && !playingSoundsMap.get(soundName).paused){
+            playingSoundsMap.get(soundName).pause();
         } else {
-            var audio = new Audio("/sounds/" + songName);
+            audio = playingSoundsMap.get(soundName);
+            audio.currentTime = 0;
             audio.play();
-            playingSoundsMap.set(songName, audio);
         }
     });
 
