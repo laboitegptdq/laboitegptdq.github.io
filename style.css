@@ -1,4 +1,4 @@
-body {
+body, button {
     font-family: "comic sans ms", "Dosis", sans-serif;
 }
 
@@ -37,6 +37,8 @@ h1.pageTitle{
     display: inline-block;
 }
 
-.soundButton:hover{
-    font-size: 3.5em;
+.soundButton:hover {
+    border: 10px inset red !important;
+    background-color: whitesmoke !important;
+    color: red !important;
 }

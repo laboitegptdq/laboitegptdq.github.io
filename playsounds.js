@@ -46,10 +46,10 @@ $("button.newColors").bind( "click", function() {
 $.getJSON('/sounds/list.json', function(data) {        
     var soundList = String(data["sound"]).split(",");
     soundList.forEach(function(sound) {
-        $("div#soundcontainer").append("<span class='soundButton randomColor' id='" + sound + "'>" + sound.split(".")[0] + "</span>");
+        $("div#soundcontainer").append("<button class='soundButton randomColor' id='" + sound + "'>" + sound.split(".")[0] + "</button>");
     });
 
-    $("span.soundButton").bind( "click", function(event) {
+    $("button.soundButton").bind( "click", function(event) {
         songName = event.target.id;
         if (playingSoundsMap.has(songName)){
             playingSoundsMap.get(songName).pause();
