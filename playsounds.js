@@ -63,12 +63,14 @@ $.getJSON('/sounds/list.json', function(data) {
             audio = new Audio("/sounds/" + soundName);
             playingSoundsMap.set(soundName, audio);
         }
-      
-        if (playingSoundsMap.has(soundName) && !playingSoundsMap.get(soundName).paused){
-            playingSoundsMap.get(soundName).pause();
+        
+        audio = playingSoundsMap.get(soundName);
+        if (!audio.paused && !audio.ended){/* the "ended" part is needed because of IE =] */
+            audio.pause();
         } else {
-            audio = playingSoundsMap.get(soundName);
-            audio.currentTime = 0;
+            if(audio.readyState > 0){/* This is impossible on some browser (IE) if the sound isn't fully loaded */
+                audio.currentTime = 0;
+            }
             audio.play();
         }
     });
